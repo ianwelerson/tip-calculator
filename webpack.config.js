@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/assets/js/main.js',
   output: {
     filename: 'assets/js/[name].js',
     path: path.resolve(__dirname, 'dist'),
