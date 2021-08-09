@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "webpack": "webpack",
-    "serve": "webpack serve --node-env=development --open",
+    "serve": "webpack serve --node-env=development --hot --open",
     "dev": "webpack --node-env=development",
     "prod": "webpack --node-env=production"
   },

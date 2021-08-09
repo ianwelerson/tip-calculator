@@ -3,14 +3,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== "production";
-const publicPath = './';
 
 module.exports = {
   entry: './src/main.js',
   output: {
     filename: 'assets/js/[name].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: publicPath,
   },
   module: {
     rules: [
@@ -39,6 +37,6 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: './dist',
+    contentBase: './src',
   },
 };
