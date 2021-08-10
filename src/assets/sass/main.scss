@@ -1,2 +1,11 @@
-.attribution { font-size: 12px; text-align: center; }
-.attribution a { color: black; }
+@import './_fonts';
+
+.attribution {
+  font-size: 12px;
+  text-align: center;
+  font-family: "Space Mono";
+}
+
+.attribution a {
+  color: $primary;
+}

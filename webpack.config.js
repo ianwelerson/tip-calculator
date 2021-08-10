@@ -10,6 +10,7 @@ module.exports = {
     filename: 'assets/js/[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -30,10 +31,22 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
+              additionalData: '@import "./src/assets/sass/_variables.scss";',
               implementation: require("sass"),
             },
           },
         ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff|woff2|ttf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name][ext][query]'
+        }
       },
     ],
   },
@@ -47,6 +60,12 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: './src',
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    inline: true,
+    hot: false,
+    watchContentBase: true,
+    liveReload: true,
   },
+  target: devMode ? 'web' : 'browserslist',
 };
