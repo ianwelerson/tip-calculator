@@ -4,85 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href=<%= require("./assets/images/favicon-32x32.png") %>>
     
     <title>Tip calculator app</title>
   </head>
   <body>
     <div class="page-body">
       <header class="page-body__header">
-        Header
-        <!-- <img src="./assets/images/logo.svg" alt="Splittler"> -->
+        <img src=<%= require("./assets/images/logo.svg") %> alt="Splittler" class="logo">
       </header>
       <main class="page-body__content">
         <div class="tip-calculator">
           <div class="tip-calculator__input-side">
             <div class="options-block">
-              <h3 class="options-block__title">
-                Bill
-              </h3>
               <div class="input-group">
-                <div class="input-group__pre">$</div>
-                <input  class="input-group__element" type="number">
+                <div class="input-group__top">
+                  <label class="input-group__label">
+                    Bill
+                  </label>
+                </div>
+                <div class="input-group__element">
+                  <div class="input-group__pre">$</div>
+                  <input class="input-group__input" type="number">
+                </div>
               </div>
             </div>
     
             <div class="options-block">
-              <h3 class="options-block__title">
-                Select Tip %
-              </h3>
-              <div class="tip-select">
-                <div class="tip-select__option">
-                  <button class="button">5%</button>
+              <div class="input-group">
+                <div class="input-group__top">
+                  <label class="input-group__label">
+                    Select Tip %
+                  </label>
                 </div>
-                <div class="tip-select__option">
-                  <button class="button">10%</button>
-                </div>
-                <div class="tip-select__option">
-                  <button class="button">15%</button>
-                </div>
-                <div class="tip-select__option">
-                  <button class="button">25%</button>
-                </div>
-                <div class="tip-select__option">
-                  <button class="button">50%</button>
-                </div>
-                <div class="tip-select__option">
-                  <div class="input-group">
-                    <input class="input-group__element" type="number" placeholder="Custom">
+                <div class="input-group__element input-group__element--options-group">
+                  <div class="input-group__options-buttons">
+                    <div class="option">
+                      <div class="option__content">
+                        <button class="button button--primary button--active">5%</button>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="option__content">
+                        <button class="button button--primary">10%</button>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="option__content">
+                        <button class="button button--primary">15%</button>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="option__content">
+                        <button class="button button--primary">25%</button>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="option__content">
+                        <button class="button button--primary">50%</button>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="option__content">
+                        <div class="input-group">
+                          <div class="input-group__element">
+                            <input class="input-group__input input-group__input--centered-placeholder" type="number" placeholder="Custom">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             
             <div class="options-block">
-              <h3 class="options-block__title">
-                Number of People
-              </h3>
               <div class="input-group">
-                <div class="input-group__pre">P</div>
-                <input class="input-group__element" type="number">
+                <div class="input-group__top">
+                  <label class="input-group__label">
+                    Number of People
+                  </label>
+                  <p class="input-group__feedback">Can't be zero</p>
+                </div>
+                <div class="input-group__element">
+                  <div class="input-group__pre">P</div>
+                  <input class="input-group__input" type="number">
+                </div>
               </div>
             </div>
           </div>
           
           <div class="tip-calculator__result-side">
-            <div class="result-block">
-              Tip Amount
-              / person
-              99.99
-            </div>
-            
-            <div class="result-block">
-              Total
-              / person
-              99.99
-            </div>
-            
-            <div class="reset-action">
-              <button>
-                Reset
-              </button>
+            <div class="result-content">
+              <div class="result-content__texts">
+                <div class="result-block">
+                  <div class="result-block__text-side">
+                    <span class="title-group__title">Tip Amount</span>
+                    <span class="title-group__unit">/ person</span>
+                  </div>
+                  <div class="result-block__value-side">
+                    <p class="value">
+                      <span class="value__currency">$</span>
+                      <span class="value__number">9.99</span>
+                    </p>
+                  </div>
+                </div>
+                
+                <div class="result-block">
+                  <div class="result-block__text-side">
+                    <p class="title-group">
+                      <span class="title-group__title">Total</span>
+                      <span class="title-group__unit">/ person</span>
+                    </p>
+                  </div>
+                  <div class="result-block__value-side">
+                    <p class="value">
+                      <span class="value__currency">$</span>
+                      <span class="value__number">99.99</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="result-content__action">
+                <button class="button button--secondary button--disabled">
+                  Reset
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@ $font-bold: 700;
 // Size
 $fs-xsmall: 0.6rem;
 $fs-small: 0.8rem;
+$fs-base: 1rem;
 $fs-lg: 1.5rem;
 
 
@@ -27,11 +28,25 @@ $cyan-600: hsl(184, 14%, 56%);
 $cyan-700: hsl(186, 14%, 43%);
 $cyan-800: hsl(183, 100%, 15%);
 
+// Red
+$red-500: hsl(0, 95%, 37%);
+
 // Theme
 $primary: $cyan-500;
 
-// --- Others
+
+// --- Border
+
+// Border style
+$border-base: 0.12rem solid;
+
+// Border radius
 $radius-xxsmall: 0.2rem;
 $radius-xsmall: 0.4rem;
 $radius-small: 0.8rem;
 $radius-default: 1rem;
+
+
+// --- Transitions
+$transition-base-leave: 0.3s all ease-out;
+$transition-base-enter: 0.3s all ease-in;
