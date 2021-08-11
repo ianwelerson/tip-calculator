@@ -19,7 +19,8 @@
 
   // Inside element
 
-  &__element {
+  &__element,
+  &__inside-label {
     padding: 0.4rem;
     position: relative;
     display: flex;
@@ -93,6 +94,34 @@
 
     &__element {
       border-color: $red-500;
+    }
+  }
+
+  &--radio & {
+    &__element {
+      padding: 0.2rem;
+      background-color: $transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    &__input {
+      position: absolute;
+      z-index: -1;
+
+      &:checked + .input-group__inside-label {
+        background-color: $cyan-500;
+        color: $cyan-800;
+      }
+    }
+
+    &__inside-label {
+      width: 100%;
+      background-color: $cyan-800;
+      color: $white;
+      font-weight: $font-bold;
+      display: flex;
+      justify-content: center;
     }
   }
 }

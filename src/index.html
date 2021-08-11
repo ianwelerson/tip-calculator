@@ -17,11 +17,12 @@
         <div class="tip-calculator">
           <div class="tip-calculator__input-side">
             <div class="options-block">
-              <div class="input-group">
+              <div class="input-group" id="billValue">
                 <div class="input-group__top">
                   <label class="input-group__label">
                     Bill
                   </label>
+                  <p class="input-group__feedback"></p>
                 </div>
                 <div class="input-group__element">
                   <img src=<%= require("./assets/images/icon-dollar.svg") %> alt="$" class="input-group__pre">
@@ -40,33 +41,48 @@
                 <div class="input-group__element input-group__element--options-group">
                   <div class="input-group__options-buttons">
                     <div class="option">
-                      <div class="option__content">
-                        <button class="button button--primary button--active">5%</button>
+                      <div class="input-group input-group--radio tipPercent">
+                        <label class="input-group__element">
+                          <input class="input-group__input" type="radio" name="tipPercent" value="5">
+                          <span class="input-group__inside-label">5%</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="input-group input-group--radio tipPercent">
+                        <label class="input-group__element">
+                          <input class="input-group__input" type="radio" name="tipPercent" value="10">
+                          <span class="input-group__inside-label">10%</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="input-group input-group--radio tipPercent">
+                        <label class="input-group__element">
+                          <input class="input-group__input" type="radio" name="tipPercent" value="15">
+                          <span class="input-group__inside-label">15%</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="input-group input-group--radio tipPercent">
+                        <label class="input-group__element">
+                          <input class="input-group__input" type="radio" name="tipPercent" value="25">
+                          <span class="input-group__inside-label">25%</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="option">
+                      <div class="input-group input-group--radio tipPercent">
+                        <label class="input-group__element">
+                          <input class="input-group__input" type="radio" name="tipPercent" value="50">
+                          <span class="input-group__inside-label">50%</span>
+                        </label>
                       </div>
                     </div>
                     <div class="option">
                       <div class="option__content">
-                        <button class="button button--primary">10%</button>
-                      </div>
-                    </div>
-                    <div class="option">
-                      <div class="option__content">
-                        <button class="button button--primary">15%</button>
-                      </div>
-                    </div>
-                    <div class="option">
-                      <div class="option__content">
-                        <button class="button button--primary">25%</button>
-                      </div>
-                    </div>
-                    <div class="option">
-                      <div class="option__content">
-                        <button class="button button--primary">50%</button>
-                      </div>
-                    </div>
-                    <div class="option">
-                      <div class="option__content">
-                        <div class="input-group">
+                        <div class="input-group" id="customTip">
                           <div class="input-group__element">
                             <input class="input-group__input input-group__input--centered-placeholder" type="number" placeholder="Custom">
                           </div>
@@ -79,12 +95,12 @@
             </div>
             
             <div class="options-block">
-              <div class="input-group">
+              <div class="input-group" id="numberOfPersons">
                 <div class="input-group__top">
                   <label class="input-group__label">
                     Number of People
                   </label>
-                  <p class="input-group__feedback">Can't be zero</p>
+                  <p class="input-group__feedback"></p>
                 </div>
                 <div class="input-group__element">
                   <img src=<%= require("./assets/images/icon-person.svg") %> alt="Person" class="input-group__pre">
@@ -105,7 +121,7 @@
                   <div class="result-block__value-side">
                     <p class="value">
                       <span class="value__currency">$</span>
-                      <span class="value__number">9.99</span>
+                      <span class="value__number" id="tipAmount">0</span>
                     </p>
                   </div>
                 </div>
@@ -120,7 +136,7 @@
                   <div class="result-block__value-side">
                     <p class="value">
                       <span class="value__currency">$</span>
-                      <span class="value__number">99.99</span>
+                      <span class="value__number" id="totalValue">0</span>
                     </p>
                   </div>
                 </div>
