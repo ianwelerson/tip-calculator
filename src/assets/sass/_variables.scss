@@ -1,20 +1,23 @@
 // --- Font
 
 // Family
-$font-base: 'Space Mono' 'Arial', sans-serif;
+$font-family-base: 'Space Mono', 'Arial', sans-serif;
 
 // Weight
 $font-normal: 400;
 $font-bold: 700;
 
 // Size
-$fs-lg: 24px;
+$fs-xsmall: 0.6rem;
+$fs-small: 0.8rem;
+$fs-lg: 1.5rem;
 
 
 // --- Colors
 
 // Base
 $white: hsl(0, 0%, 100%);
+$transparent: transparent;
 
 // Cyan
 $cyan-300: hsl(189, 41%, 97%);
@@ -26,3 +29,9 @@ $cyan-800: hsl(183, 100%, 15%);
 
 // Theme
 $primary: $cyan-500;
+
+// --- Others
+$radius-xxsmall: 0.2rem;
+$radius-xsmall: 0.4rem;
+$radius-small: 0.8rem;
+$radius-default: 1rem;

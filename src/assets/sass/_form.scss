@@ -1,0 +1,29 @@
+.input-group {
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  background-color: $cyan-300;
+  position: relative;
+  border-radius: $radius-xsmall;
+
+
+  &__pre {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $cyan-400;
+  }
+
+  &__element {
+    width: 100%;
+    padding-left: 1rem;
+    border: none;
+    outline: none;
+    text-align: right;
+    font-family: $font-family-base;
+    font-weight: $font-bold;
+    font-size: $fs-small;
+    color: $cyan-800;
+    background-color: $transparent;
+  }
+}

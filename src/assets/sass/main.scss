@@ -1,11 +1,11 @@
+// ---- Imports
+
+// Basic
+@import './_reset';
 @import './_fonts';
+@import './_form';
+@import './_buttons';
 
-.attribution {
-  font-size: 12px;
-  text-align: center;
-  font-family: "Space Mono";
-}
-
-.attribution a {
-  color: $primary;
-}
+// Content
+@import './_page';
+@import './_tip-calculator';

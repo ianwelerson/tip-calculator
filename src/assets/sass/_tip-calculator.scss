@@ -1,0 +1,41 @@
+.tip-calculator {
+  padding: 1rem;
+  border-radius: $radius-default;
+  display: flex;
+  background-color: $white;
+
+  &__input-side {
+    margin-right: 1.4rem;
+    max-width: 40vh;
+
+    .options-block {
+      margin-bottom: 1.4rem;
+      display: flex;
+      flex-direction: column;
+
+      &__title {
+        color: $cyan-600;
+        font-size: $fs-small;
+        font-weight: $font-bold;
+        margin-bottom: 0.2rem;
+      }
+
+      .tip-select {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -0.2rem;
+
+        &__option {
+          padding: 0.2rem;
+          width: 33.33%;
+        }
+      }
+    }
+  }
+
+  &__result-side {
+    padding: 1.4rem 1rem 1rem 1rem;
+    border-radius: $radius-small;
+    background-color: $cyan-800;
+  }
+}

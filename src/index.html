@@ -2,37 +2,91 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
     
-    <title>Frontend Mentor | Tip calculator app</title>
+    <title>Tip calculator app</title>
   </head>
   <body>
-
-    Bill
-
-    Select Tip %
-    5%
-    10%
-    15%
-    25%
-    50%
-    Custom
-
-    Number of People
-
-    Tip Amount
-    / person
-
-    Total
-    / person
-
-    Reset
+    <div class="page-body">
+      <header class="page-body__header">
+        Header
+        <!-- <img src="./assets/images/logo.svg" alt="Splittler"> -->
+      </header>
+      <main class="page-body__content">
+        <div class="tip-calculator">
+          <div class="tip-calculator__input-side">
+            <div class="options-block">
+              <h3 class="options-block__title">
+                Bill
+              </h3>
+              <div class="input-group">
+                <div class="input-group__pre">$</div>
+                <input  class="input-group__element" type="number">
+              </div>
+            </div>
     
-    <div class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
+            <div class="options-block">
+              <h3 class="options-block__title">
+                Select Tip %
+              </h3>
+              <div class="tip-select">
+                <div class="tip-select__option">
+                  <button class="button">5%</button>
+                </div>
+                <div class="tip-select__option">
+                  <button class="button">10%</button>
+                </div>
+                <div class="tip-select__option">
+                  <button class="button">15%</button>
+                </div>
+                <div class="tip-select__option">
+                  <button class="button">25%</button>
+                </div>
+                <div class="tip-select__option">
+                  <button class="button">50%</button>
+                </div>
+                <div class="tip-select__option">
+                  <div class="input-group">
+                    <input class="input-group__element" type="number" placeholder="Custom">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="options-block">
+              <h3 class="options-block__title">
+                Number of People
+              </h3>
+              <div class="input-group">
+                <div class="input-group__pre">P</div>
+                <input class="input-group__element" type="number">
+              </div>
+            </div>
+          </div>
+          
+          <div class="tip-calculator__result-side">
+            <div class="result-block">
+              Tip Amount
+              / person
+              99.99
+            </div>
+            
+            <div class="result-block">
+              Total
+              / person
+              99.99
+            </div>
+            
+            <div class="reset-action">
+              <button>
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   </body>
 </html>
