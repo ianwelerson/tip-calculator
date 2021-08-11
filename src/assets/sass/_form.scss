@@ -27,6 +27,7 @@
     border-radius: $radius-xsmall;
     background-color: $cyan-300;
     border: $border-base $transparent;
+    transition: $transition-base-leave;
 
     &--options-group {
       padding: 0;
@@ -34,7 +35,9 @@
       border-color: $transparent !important;
     }
 
-    &:focus-within {
+    &:focus-within,
+    &:hover {
+      transition: $transition-base-enter;
       border-color: $cyan-500;
     }
   }
