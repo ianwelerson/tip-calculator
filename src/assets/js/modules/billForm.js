@@ -1,17 +1,19 @@
-import { setFieldFeedback } from './formControl'
-import { hasError } from './validation'
+import { setFieldFeedback } from '../helpers/formHelper'
+import { hasError } from '../helpers/validationHelper'
 
-let localStore;
+const billValueElement =  document.getElementById('billValue')
+const numberOfPersonsElement =  document.getElementById('numberOfPersons')
+const customTipElement =  document.getElementById('customTip')
+const fixedTipElement =  document.querySelectorAll('div.input-group.input-group--radio.tipPercent')
 
-function bootstrapBillForm (store) {
-  localStore = store
+function bootstrap () {
   setFieldsListener()
 }
 
 function setFieldsListener () {
   // Bill value
   setupListener({
-    parentElement: document.getElementById('billValue'),
+    parentElement: billValueElement,
     event: 'input',
     storeKey: 'billValue',
     callback: null,
@@ -22,7 +24,7 @@ function setFieldsListener () {
 
   // Number of persons
   setupListener({
-    parentElement: document.getElementById('numberOfPersons'),
+    parentElement: numberOfPersonsElement,
     event: 'input',
     storeKey: 'numberOfPersons',
     callback: null,
@@ -33,7 +35,7 @@ function setFieldsListener () {
 
   // Custom tip
   setupListener({
-    parentElement: document.getElementById('customTip'),
+    parentElement: customTipElement,
     event: 'input',
     storeKey: 'tipPercentage',
     callback: handleTipSelection,
@@ -41,8 +43,7 @@ function setFieldsListener () {
   })
 
   // Predefined Percent
-  const tipPercent = document.querySelectorAll('div.input-group.input-group--radio.tipPercent');
-  for (var tip of tipPercent) {
+  for (var tip of fixedTipElement) {
     setupListener({
       parentElement: tip,
       event: 'change',
@@ -61,7 +62,7 @@ function setupListener ({ parentElement, storeKey, validations, callback, event 
   parentElement.getElementsByTagName('input')[0].addEventListener(event, (event) => {
     const inputValue = Number(event.target.value)
 
-    localStore.setValue({
+    window.store.setValue({
       key: storeKey,
       value: inputValue
     })
@@ -102,6 +103,18 @@ function handleTipSelection(element) {
   }
 }
 
+function resetForm () {
+  billValueElement.getElementsByTagName('input')[0].value = ''
+  numberOfPersonsElement.getElementsByTagName('input')[0].value = ''
+  customTipElement.getElementsByTagName('input')[0].value = ''
+
+  const checkedRadio = document.querySelector('[type=radio]:checked')
+  if (checkedRadio) {
+    checkedRadio.checked = false
+  }
+}
+
 export {
-  bootstrapBillForm,
+  bootstrap,
+  resetForm
 }

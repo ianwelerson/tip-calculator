@@ -8,7 +8,7 @@ class appStore {
   setValue ({ key, value }) {
     this[key] = value
 
-    this.triggerUpdateEvent()
+    this.triggerEvent('valuesUpdated')
   }
 
   getValue (key) {
@@ -23,9 +23,17 @@ class appStore {
     }
   }
 
-  triggerUpdateEvent () {
-    const event = new CustomEvent('updateCalculation');
+  triggerEvent (eventName) {
+    const event = new CustomEvent(eventName);
     window.dispatchEvent(event)
+  }
+
+  resetState () {
+    this.billValue = 0;
+    this.numberOfPersons = 0;
+    this.tipPercentage = 0;
+
+    this.triggerEvent('valuesReseted')
   }
 }
 

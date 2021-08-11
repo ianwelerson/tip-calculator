@@ -1,8 +1,14 @@
-function updateTipValues (store) {
-  const calcResult = calcTip(store)
+function bootstrap () {
+  createResetEvent()
+}
+
+function update () {
+  const calcResult = calcTip(window.store)
 
   document.getElementById('tipAmount').innerText = calcResult.tipAmount
   document.getElementById('totalValue').innerText = calcResult.totalValue
+
+  allowResetValues(calcResult.tipAmount && calcResult.totalValue)
 }
 
 function calcTip (store) {
@@ -15,15 +21,36 @@ function calcTip (store) {
     return total
   }
 
+  // Total tip
+  const totalTip = (store.billValue * (store.tipPercentage / 100))
+
   // Tip
-  const tipAmount = store.billValue * (store.tipPercentage / 100)
+  const tipAmount = totalTip / store.numberOfPersons
   total.tipAmount = Math.round(tipAmount * 100) / 100
 
   // Total
-  const totalValue = (tipAmount + store.billValue) / store.numberOfPersons
+  const totalValue = (totalTip + store.billValue) / store.numberOfPersons
   total.totalValue = Math.round(totalValue * 100) / 100
 
   return total
 }
 
-export { updateTipValues }
+function allowResetValues (status) {
+  const buttonElement = document.getElementById('resetValues')
+
+  if (status) {
+    buttonElement.classList.remove('button--disabled')
+    
+    return
+  }
+
+  buttonElement.classList.add('button--disabled')
+}
+
+function createResetEvent () {
+  document.getElementById('resetValues').addEventListener('click', () => {
+    window.store.resetState()
+  })
+}
+
+export { update, bootstrap }

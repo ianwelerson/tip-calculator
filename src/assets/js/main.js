@@ -2,16 +2,29 @@
 import "../sass/main.scss";
 
 // Importing modules
-import { bootstrapBillForm } from './modules/billForm';
-import { updateTipValues } from './modules/tipCalculator';
-import appStore from './modules/store'
+import {
+  bootstrap as bootstrapBillForm,
+  resetForm as resetBillForm
+} from './modules/billForm';
+import {
+  bootstrap as bootstrapTipCalculator,
+  update as updateTipValues
+} from './modules/tipCalculator';
+import appStore from './store'
 
-// Create new shared store
-const store = new appStore()
+// Create new store in window object
+window.store = new appStore()
 
-// Start the tip form passing the store
-bootstrapBillForm(store)
+// Start the app
+bootstrapBillForm()
+bootstrapTipCalculator()
 
-window.addEventListener('updateCalculation', () => {
-  updateTipValues(store)
+// Events
+window.addEventListener('valuesUpdated', () => {
+  updateTipValues()
+})
+
+window.addEventListener('valuesReseted', () => {
+  resetBillForm()
+  updateTipValues()
 })
