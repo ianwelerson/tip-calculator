@@ -8,7 +8,8 @@
     "serve": "webpack serve --node-env=development",
     "dev": "webpack --node-env=development",
     "prod": "webpack --node-env=production",
-    "test": "jest"
+    "test": "jest --passWithNoTests",
+    "test:coverage": "jest --passWithNoTests --collectCoverage"
   },
   "repository": {
     "type": "git",
@@ -40,5 +41,8 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
 }
