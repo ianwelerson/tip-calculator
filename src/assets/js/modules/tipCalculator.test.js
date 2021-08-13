@@ -1,21 +1,18 @@
-import { bootstrap, update as updateTipValues } from "./tipCalculator"
+import { bootstrap as createTipCalculatorEvents, update as updateTipValues } from "./tipCalculator"
 import appStore from '../store'
 
-const htmlContent = `
-<div id="tipAmount"></div>
-<div id="totalValue"></div>
-<button id="resetValues">Reset values</div>
-`
+// Load HTML Page
+import fs from 'fs'
+import path from 'path'
+const html = fs.readFileSync(path.resolve(__dirname, '../../../index.html'), 'utf8')
+jest.dontMock('fs')
+
 beforeAll(() => {
   // Create the store
   window.store = new appStore()
 
   // Set the html content
-  document.body.innerHTML = htmlContent
-})
-
-test('create the reset event', () => {
-  bootstrap()
+  document.documentElement.innerHTML = html.toString()
 })
 
 test('screen values are zero when store has no values', () => {
@@ -46,8 +43,11 @@ test('screen values are correct based on store values', () => {
   expect(document.getElementById('totalValue').innerText).toBe(75)
 })
 
-test('reset state reset is triggered by the reset button', () => {
+test('reset button trigger the reset store', () => {
+  createTipCalculatorEvents()
+
   window.window.store.resetState = jest.fn()
+
   document.getElementById('resetValues').click()
 
   expect(window.window.store.resetState).toBeCalledTimes(1)

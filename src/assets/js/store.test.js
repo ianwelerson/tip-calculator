@@ -1,7 +1,6 @@
 
 import Store from './store'
 
-let store;
 const defaultStore = {
   billValue: 0,
   numberOfPersons: 0,
@@ -9,16 +8,17 @@ const defaultStore = {
 }
 
 beforeAll(() => {
-  store = new Store()
+  window.store = new Store()
 })
 
 describe('storage creation', () => {
-  test('create a store instance', () => {
-    expect(store).toBeInstanceOf(Store)
+  test('create the instance', () => {
+    expect(window.store).toBeInstanceOf(Store)
   })
   
   test('default value is zero', () => {
-    const returnedData = store.allValues()
+    const returnedData = window.store.allValues()
+
     expect(returnedData).toStrictEqual(defaultStore)
   })
 })
@@ -26,39 +26,20 @@ describe('storage creation', () => {
 describe('store interaction', () => {
   const key = 'billValue'
   const value = 10
-  const { dispatchEvent } = window;
-
-  beforeAll(() => {
-    delete window.dispatchEvent;
-    window.dispatchEvent = jest.fn();
-  });
-
-  afterAll(() => {
-    window.dispatchEvent = dispatchEvent;
-  });
 
   test('can set a value', () => {  
-    store.setValue({
+    window.store.setValue({
       key,
       value,
     })
   
-    expect(store.getValue(key)).toBe(value)
-  })
-
-  test('the event function is called', () => {
-    store.triggerEvent = jest.fn();
-
-    store.setValue({
-      key,
-      value,
-    })
-
-    expect(store.triggerEvent).toBeCalledWith('valuesUpdated');
+    expect(window.store.getValue(key)).toBe(value)
   })
 
   test('the window event is triggered', () => {
-    store.setValue({
+    window.dispatchEvent = jest.fn();
+
+    window.store.setValue({
       key,
       value,
     })
@@ -67,8 +48,8 @@ describe('store interaction', () => {
   })
 
   test('the data is reseted', () => {
-    store.resetState()
+    window.store.resetState()
 
-    expect(store.allValues()).toStrictEqual(defaultStore);
+    expect(window.store.allValues()).toStrictEqual(defaultStore);
   })
 })

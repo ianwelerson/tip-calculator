@@ -1,107 +1,63 @@
 import { setFieldFeedback } from "./formHelper";
 
-describe('set error with no message', () => {
-  const mockHTMLElement = `
-    <div class="input-group" id="mockHTMLElement">
-      <div class="input-group__top">
-        <label class="input-group__label">
-          Input Title
-        </label>
-      </div>
-      <div class="input-group__element">
-        <input class="input-group__input" type="number">
-      </div>
-    </div>
-  `
-  let fakeFeedback
-  
-  beforeAll(() => {
-    document.body.innerHTML = mockHTMLElement
+// Load HTML Page
+import fs from 'fs'
+import path from 'path'
+const html = fs.readFileSync(path.resolve(__dirname, '../../../index.html'), 'utf8')
+jest.dontMock('fs')
 
-    fakeFeedback = {
-      element: document.getElementById('mockHTMLElement'),
+describe('set error on field with no feedback area', () => {
+  let element
+
+  beforeAll(() => {
+    document.documentElement.innerHTML = html.toString()
+
+    element = document.getElementById('customTip')
+
+    setFieldFeedback({
+      element,
       hasError: true,
       feedbackMessage: 'Just a test message'
-    }
-
-    setFieldFeedback(fakeFeedback)
+    })
   })
   
   test('field have the correct class', () => {
-    expect(document.getElementById('mockHTMLElement').classList.contains('input-group--has-error')).toBe(true)
+    expect(element.classList.contains('input-group--has-error')).toBe(true)
   })
   
   test('field has no feedback message', () => {
-    expect(document.getElementById('feedbackElement')).toBe(null)
+    expect(element.querySelector('.input-group__feedback')).toBe(null)
   })
 })
 
-describe('set error message', () => {
-  const mockHTMLElement = `
-    <div class="input-group input-group--has-error" id="mockHTMLElement">
-      <div class="input-group__top">
-        <label class="input-group__label">
-          Input Title
-        </label>
-        <p class="input-group__feedback" id="feedbackElement">My feedback</p>
-      </div>
-      <div class="input-group__element">
-        <input class="input-group__input" type="number">
-      </div>
-    </div>
-  `
-  let fakeFeedback
+describe('set error on a field with feedback area', () => {
+  let element
+  const message = 'My error message'
   
   beforeAll(() => {
-    document.body.innerHTML = mockHTMLElement
+    document.documentElement.innerHTML = html.toString()
 
-    fakeFeedback = {
-      element: document.getElementById('mockHTMLElement'),
+    element = document.getElementById('billValue')
+
+    // Set a message
+    setFieldFeedback({
+      element,
+      hasError: true,
+      feedbackMessage: message
+    })
+  })
+
+  test('field feedback has message', () => {
+    expect(element.querySelector('.input-group__feedback').innerText).toBe(message)
+  })
+
+  test('field has no feedback after clear message', () => {
+    setFieldFeedback({
+      element,
       hasError: false,
       feedbackMessage: ''
-    }
+    })
 
-    setFieldFeedback(fakeFeedback)
-  })
-
-  test('field has no feedback message', () => {
-    expect(document.getElementById('feedbackElement').innerText).toBe('')
-  })
-})
-
-describe('remove error', () => {
-  const mockHTMLElement = `
-    <div class="input-group input-group--has-error" id="mockHTMLElement">
-      <div class="input-group__top">
-        <label class="input-group__label">
-          Input Title
-        </label>
-        <p class="input-group__feedback" id="feedbackElement">My feedback</p>
-      </div>
-      <div class="input-group__element">
-        <input class="input-group__input" type="number">
-      </div>
-    </div>
-  `
-  let fakeFeedback
-  
-  beforeAll(() => {
-    document.body.innerHTML = mockHTMLElement
-
-    fakeFeedback = {
-      element: document.getElementById('mockHTMLElement'),
-      hasError: false,
-      feedbackMessage: ''
-    }
-
-    setFieldFeedback(fakeFeedback)
-  })
-  
-  test('field has no error class', () => {
-    expect(document.getElementById('mockHTMLElement').classList.contains('input-group--has-error')).toBe(false)
-  })
-
-  test('field has no feedback message', () => {
-    expect(document.getElementById('feedbackElement').innerText).toBe('')
+    expect(element.querySelector('.input-group__feedback').innerText).toBe('')
   })
 })

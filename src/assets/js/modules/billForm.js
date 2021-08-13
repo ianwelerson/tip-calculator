@@ -59,7 +59,7 @@ function setupListener ({ parentElement, storeKey, validations, callback, event 
     return
   }
 
-  parentElement.getElementsByTagName('input')[0].addEventListener(event, (event) => {
+  parentElement.querySelector('input').addEventListener(event, (event) => {
     const inputValue = Number(event.target.value)
 
     window.store.setValue({
@@ -91,7 +91,7 @@ function setupListener ({ parentElement, storeKey, validations, callback, event 
 
 function handleTipSelection(element) {
   if (!!element.querySelector('[type=radio]')) {
-    document.getElementById('customTip').getElementsByTagName('input')[0].value = ''
+    document.getElementById('customTip').getElementsByTagName('input').value = ''
 
     return;
   }
@@ -104,9 +104,9 @@ function handleTipSelection(element) {
 }
 
 function resetForm () {
-  document.getElementById(billValueSelector).getElementsByTagName('input')[0].value = ''
-  document.getElementById(numberOfPersonsSelector).getElementsByTagName('input')[0].value = ''
-  document.getElementById(customTipSelector).getElementsByTagName('input')[0].value = ''
+  document.getElementById(billValueSelector).querySelector('input').value = ''
+  document.getElementById(numberOfPersonsSelector).querySelector('input').value = ''
+  document.getElementById(customTipSelector).querySelector('input').value = ''
 
   const checkedRadio = document.querySelector('[type=radio]:checked')
   if (checkedRadio) {

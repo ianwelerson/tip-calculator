@@ -1,4 +1,4 @@
-import { bootstrap, resetForm } from "./billForm"
+import { bootstrap as bootstrapBillForm, resetForm } from "./billForm"
 import StoreApp from '../store'
 
 // Load HTML Page
@@ -13,66 +13,77 @@ beforeAll(() => {
   window.store = new StoreApp()
 
   // Setup listeners
-  bootstrap()
+  bootstrapBillForm()
 })
 
-describe('bill value', () => {
-  test('set correct value', () => {
+describe('change field value can set value on store', () => {
+  let blockELement
+  let inputElement
+
+  beforeAll(() => {
+    blockELement = document.getElementById('billValue')
+    inputElement = blockELement.querySelector('input')
+  })
+
+  test('set correct value on store', () => {
     const value = 10
-    document.getElementById('billValue').getElementsByTagName('input')[0].value = value
-    document.getElementById('billValue').getElementsByTagName('input')[0].dispatchEvent(new Event('input'))
+    inputElement.value = value
+    inputElement.dispatchEvent(new Event('input'))
   
     expect(window.store.getValue('billValue')).toBe(value)
   })
   
-  test('set error if value is less than the minimum', () => {
+  test('throw error if the value is invalid', () => {
     const value = 0
-    document.getElementById('billValue').getElementsByTagName('input')[0].value = value
-    document.getElementById('billValue').getElementsByTagName('input')[0].dispatchEvent(new Event('input'))
+    inputElement.value = value
+    inputElement.dispatchEvent(new Event('input'))
   
-    expect(document.getElementById('billValue').classList.contains('input-group--has-error')).toBeTruthy()
+    expect(blockELement.classList.contains('input-group--has-error')).toBeTruthy()
   })
 })
 
-describe('number of persons', () => {
-  test('set correct value', () => {
-    const value = 10
-    document.getElementById('numberOfPersons').getElementsByTagName('input')[0].value = value
-    document.getElementById('numberOfPersons').getElementsByTagName('input')[0].dispatchEvent(new Event('input'))
-  
-    expect(window.store.getValue('numberOfPersons')).toBe(value)
-  })
-  
-  test('set error if value is less than the minimum', () => {
-    const value = 0
-    document.getElementById('numberOfPersons').getElementsByTagName('input')[0].value = value
-    document.getElementById('numberOfPersons').getElementsByTagName('input')[0].dispatchEvent(new Event('input'))
-  
-    expect(document.getElementById('numberOfPersons').classList.contains('input-group--has-error')).toBeTruthy()
-  })
-})
-
-describe('tip percentage', () => {
+describe('set the tip can be manually or predefined', () => {
   beforeEach(() => {
     window.store.resetState()
   })
 
   test('select a available option', () => {
-    document.querySelectorAll('div.input-group.input-group--radio.tipPercent')[0].getElementsByTagName('input')[0].checked = true
-    document.querySelectorAll('div.input-group.input-group--radio.tipPercent')[0].getElementsByTagName('input')[0].dispatchEvent(new Event('change'))
+    const radioElement = document.querySelector('div.input-group.input-group--radio.tipPercent').querySelector('input')
+    const elementValue = Number(radioElement.value)
+
+    radioElement.checked = true
+    radioElement.dispatchEvent(new Event('change'))
   
-    expect(window.store.getValue('tipPercentage')).not.toBe(0)
+    expect(window.store.getValue('tipPercentage')).toBe(elementValue)
   })
 
   test('set manual value', () => {
     const value = 10
-    document.getElementById('customTip').getElementsByTagName('input')[0].value = value
-    document.getElementById('customTip').getElementsByTagName('input')[0].dispatchEvent(new Event('input'))
+    const inputElement = document.getElementById('customTip').querySelector('input')
+
+    inputElement.value = value
+    inputElement.dispatchEvent(new Event('input'))
   
     expect(window.store.getValue('tipPercentage')).toBe(value)
   })
 })
 
-test('reset the form', () => {
+test('reset the form values', () => {
+  // Set a radio field to checked
+  const radioElement = document.querySelector('div.input-group.input-group--radio.tipPercent').querySelector('input')
+  const billValue = document.getElementById('billValue').querySelector('input')
+  const numberOfPersons = document.getElementById('numberOfPersons').querySelector('input')
+  const customTip = document.getElementById('customTip').querySelector('input')
+
+  radioElement.checked = true
+  billValue.value = 30
+  numberOfPersons.value = 2
+  customTip.value = 10
+
   resetForm()
+
+  expect(radioElement.checked).toBeFalsy()
+  expect(billValue.value).toBe('')
+  expect(numberOfPersons.value).toBe('')
+  expect(customTip.value).toBe('')
 })

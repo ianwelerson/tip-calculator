@@ -1,22 +1,22 @@
 import { hasError } from "./validationHelper";
 
-describe('validation', () => {
-  test('return false with empty validations', () => {
-    const errorResponse = hasError({
-      validations: [],
-      value: 0
-    })
-  
-    expect(errorResponse).toMatchObject({
-      hasError: false,
-      message: ''
-    })
+test('return false when received an empty validations array', () => {
+  const errorResponse = hasError({
+    validations: [],
+    value: 0
   })
-  
+
+  expect(errorResponse).toMatchObject({
+    hasError: false,
+    message: ''
+  })
+})
+
+describe('validation rules', () => {
   describe('min', () => {
     const minValue = 1
   
-    test(`return true when value is less than ${minValue}`, () => {
+    test(`true when value is less than ${minValue}`, () => {
       const errorResponse = hasError({
         validations: [`min:${minValue}`],
         value: 0
@@ -28,7 +28,7 @@ describe('validation', () => {
       })
     })
   
-    test(`return false when value is greater than ${minValue}`, () => {
+    test(`false when value is greater than ${minValue}`, () => {
       const errorResponse = hasError({
         validations: [`min:${minValue}`],
         value: 10
@@ -44,7 +44,7 @@ describe('validation', () => {
   describe('max', () => {
     const max = 100
   
-    test(`return true when value is greater than ${max}`, () => {
+    test(`true when value is greater than ${max}`, () => {
       const errorResponse = hasError({
         validations: [`max:${max}`],
         value: 101
@@ -56,7 +56,7 @@ describe('validation', () => {
       })
     })
   
-    test(`return false when value is less than ${max}`, () => {
+    test(`false when value is less than ${max}`, () => {
       const errorResponse = hasError({
         validations: [`max:${max}`],
         value: 10

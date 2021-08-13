@@ -8,8 +8,8 @@
     "serve": "webpack serve --node-env=development",
     "dev": "webpack --node-env=development",
     "prod": "webpack --node-env=production",
-    "test": "jest --passWithNoTests",
-    "test:coverage": "jest --passWithNoTests --collectCoverage"
+    "test:unit": "jest --passWithNoTests",
+    "test:unit-coverage": "jest --passWithNoTests --collectCoverage"
   },
   "repository": {
     "type": "git",
