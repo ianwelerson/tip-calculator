@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('tipCalculation', ({ manual }) => {
+  cy.get('#billValue input').type('100')
+  
+  if (manual) {
+    cy.get('#customTip input').type('10')
+    cy.get('#numberOfPersons input').type('2')
+    
+    cy.get('#tipAmount').should('have.text', '5')
+    cy.get('#totalValue').should('have.text', '55')
+  } else {
+    cy.get('[name=tipPercent][value=50]').check({force: true})
+    cy.get('#numberOfPersons input').type('2')
+
+    cy.get('#tipAmount').should('have.text', '25')
+    cy.get('#totalValue').should('have.text', '75')
+  }
+})
