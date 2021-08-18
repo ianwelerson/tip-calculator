@@ -5,23 +5,29 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  entry: './src/assets/js/main.js',
+  entry: './src/assets/js/main.ts',
   output: {
     filename: 'assets/js/[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
+  },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.tsx?$/,
         exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          },
+          'ts-loader',
+        ]
       },
       {
         test: /\.scss$/,

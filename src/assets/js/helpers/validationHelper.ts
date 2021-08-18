@@ -1,4 +1,4 @@
-function hasError ({ validations, value }) {
+function hasError ({ validations, value }: { validations: Array<string>, value: number}) {
   const errorReturn = {
     hasError: false,
     message: ''

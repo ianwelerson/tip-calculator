@@ -10,10 +10,14 @@ import {
   bootstrap as bootstrapTipCalculator,
   update as updateTipValues
 } from './modules/tipCalculator';
-import appStore from './store'
+import Store from './store'
+
+declare global {
+  interface Window { store: any; }
+}
 
 // Create new store in window object
-window.store = new appStore()
+window.store = new Store()
 
 // Start the app
 bootstrapBillForm()

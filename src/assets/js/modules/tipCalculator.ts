@@ -1,17 +1,19 @@
+import { StoreStructure } from '../../../../ts/interfaces'
+
 function bootstrap () {
   createResetEvent()
 }
 
 function update () {
-  const calcResult = calcTip(window.store)
+  const calcResult = calcTip(window.store.allValues())
 
-  document.getElementById('tipAmount').innerText = calcResult.tipAmount
-  document.getElementById('totalValue').innerText = calcResult.totalValue
+  document.getElementById('tipAmount').innerText = String(calcResult.tipAmount)
+  document.getElementById('totalValue').innerText = String(calcResult.totalValue)
 
-  allowResetValues(calcResult.tipAmount && calcResult.totalValue)
+  allowResetValues(!!(calcResult.tipAmount && calcResult.totalValue))
 }
 
-function calcTip (store) {
+function calcTip (store: StoreStructure) {
   const total = {
     tipAmount: 0,
     totalValue: 0
@@ -35,7 +37,7 @@ function calcTip (store) {
   return total
 }
 
-function allowResetValues (status) {
+function allowResetValues (status: Boolean) {
   const buttonElement = document.getElementById('resetValues')
 
   if (status) {

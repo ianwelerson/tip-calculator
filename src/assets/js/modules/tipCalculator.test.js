@@ -18,8 +18,8 @@ beforeAll(() => {
 test('screen values are zero when store has no values', () => {
   updateTipValues()
 
-  expect(document.getElementById('tipAmount').innerText).toBe(0)
-  expect(document.getElementById('totalValue').innerText).toBe(0)
+  expect(document.getElementById('tipAmount').innerText).toBe('0')
+  expect(document.getElementById('totalValue').innerText).toBe('0')
 })
 
 test('screen values are correct based on store values', () => {
@@ -39,8 +39,8 @@ test('screen values are correct based on store values', () => {
   
   updateTipValues()
 
-  expect(document.getElementById('tipAmount').innerText).toBe(25)
-  expect(document.getElementById('totalValue').innerText).toBe(75)
+  expect(document.getElementById('tipAmount').innerText).toBe('25')
+  expect(document.getElementById('totalValue').innerText).toBe('75')
 })
 
 test('reset button trigger the reset store', () => {

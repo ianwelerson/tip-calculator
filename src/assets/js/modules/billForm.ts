@@ -1,6 +1,14 @@
 import { setFieldFeedback } from '../helpers/formHelper'
 import { hasError } from '../helpers/validationHelper'
 
+interface ListenerInterface {
+  parentElement: HTMLElement
+  storeKey: string
+  validations: Array<string>
+  callback: Function | null
+  event: string
+}
+
 const billValueSelector =  'billValue'
 const numberOfPersonsSelector =  'numberOfPersons'
 const customTipSelector =  'customTip'
@@ -43,9 +51,9 @@ function setFieldsListener () {
   })
 
   // Predefined Percent
-  for (var tip of document.querySelectorAll(fixedTipSelector)) {
+  for (let tip of document.querySelectorAll(fixedTipSelector)) {
     setupListener({
-      parentElement: tip,
+      parentElement: <HTMLElement>tip,
       event: 'change',
       storeKey: 'tipPercentage',
       callback: handleTipSelection,
@@ -54,13 +62,14 @@ function setFieldsListener () {
   }
 }
 
-function setupListener ({ parentElement, storeKey, validations, callback, event }) {
+function setupListener ({ parentElement, storeKey, validations, callback, event }: ListenerInterface) {
   if (!parentElement || !parentElement.getElementsByTagName('input').length) {
     return
   }
 
-  parentElement.querySelector('input').addEventListener(event, (event) => {
-    const inputValue = Number(event.target.value)
+  parentElement.querySelector('input').addEventListener(event, (eventElement) => {
+    const target = <HTMLInputElement>eventElement.target
+    const inputValue = Number(target.value)
 
     window.store.setValue({
       key: storeKey,
@@ -89,14 +98,16 @@ function setupListener ({ parentElement, storeKey, validations, callback, event 
   })
 }
 
-function handleTipSelection(element) {
+function handleTipSelection(element: HTMLElement) {
   if (!!element.querySelector('[type=radio]')) {
-    document.getElementById('customTip').getElementsByTagName('input').value = ''
+    const inputElement: HTMLInputElement = document.getElementById('customTip').getElementsByTagName('input')[0]
+
+    inputElement.value = ''
 
     return;
   }
 
-  const checkedRadio = document.querySelector('[type=radio]:checked')
+  const checkedRadio: HTMLInputElement = document.querySelector('[type=radio]:checked')
 
   if (checkedRadio) {
     checkedRadio.checked = false
@@ -108,7 +119,7 @@ function resetForm () {
   document.getElementById(numberOfPersonsSelector).querySelector('input').value = ''
   document.getElementById(customTipSelector).querySelector('input').value = ''
 
-  const checkedRadio = document.querySelector('[type=radio]:checked')
+  const checkedRadio: HTMLInputElement = document.querySelector('[type=radio]:checked')
   if (checkedRadio) {
     checkedRadio.checked = false
   }
