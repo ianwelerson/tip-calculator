@@ -70,20 +70,6 @@
     }
   }
 
-  &__options-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -0.2rem;
-
-    .option {
-      width: 33.33%;
-
-      &__content {
-        padding: 0.2rem;
-      }
-    }
-  }
-
   // States
 
   &--has-error & {

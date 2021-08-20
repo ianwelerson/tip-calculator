@@ -14,9 +14,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+
+// Partials
 const PageHeader = () => import('@/components/PageHeader.vue')
-const TipForm = () => import('@/components/TipForm.vue')
-const TipResult = () => import('@/components/TipResult.vue')
+const TipForm = () => import('@/components/partials/TipForm.vue')
+const TipResult = () => import('@/components/partials/TipResult.vue')
 
 @Component({
   components: {

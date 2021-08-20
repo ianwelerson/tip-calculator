@@ -10,7 +10,7 @@
           <div class="result-block__value-side">
             <p class="value">
               <span class="value__currency">$</span>
-              <span class="value__number" id="tipAmount">0</span>
+              <span class="value__number" id="tipAmount">{{ getInvoiceValue }}</span>
             </p>
           </div>
         </div>
@@ -42,10 +42,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
+
+const TipModule = namespace('TipModule')
 
 @Component
 export default class TipResult extends Vue {
-  //
+  @TipModule.Getter
+  public getInvoiceValue!: number
 }
 </script>
 
