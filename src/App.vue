@@ -1,29 +1,73 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="tip-calculator">
+    <div class="tip-calculator__header">
+      <PageHeader />
+    </div>
+    <main class="tip-calculator__main">
+      <div class="tip-calculator__content">
+        <TipForm />
+        <TipResult />
+      </div>
+    </main>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import HelloWorld from './components/HelloWorld.vue'
+const PageHeader = () => import('@/components/PageHeader.vue')
+const TipForm = () => import('@/components/TipForm.vue')
+const TipResult = () => import('@/components/TipResult.vue')
 
 @Component({
   components: {
-    HelloWorld
+    PageHeader,
+    TipForm,
+    TipResult
   }
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+// Base styles
+@import '@/assets/scss/reset';
+@import '@/assets/scss/fonts';
+@import '@/assets/scss/buttons';
+@import '@/assets/scss/form';
+
+.tip-calculator {
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $cyan-400;
+  font-family: $font-family-base;
+
+  &__header {
+    //
+  }
+
+  &__main {
+    margin-top: 2rem;
+    width: $desktop-size;
+
+    @media only screen and (max-width: 600px)  {
+      width: 100%;
+    }
+  }
+
+  &__content {
+    padding: 1rem;
+    border-radius: $radius-default;
+    display: flex;
+    align-items: stretch;
+    background-color: $white;
+
+    @media only screen and (max-width: 600px)  {
+      flex-direction: column;
+    }
+  }
 }
 </style>

@@ -1,0 +1,45 @@
+.button {
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem;
+  border: $border-base $transparent;
+  border-radius: $radius-xxsmall;
+  font-family: $font-family-base;
+  font-size: $fs-base;
+  font-weight: $font-bold;
+  cursor: pointer;
+  transition: $transition-base-leave;
+
+  &--primary {
+    color: $white;
+    background-color: $cyan-800;
+
+    &:hover,
+    &.button--active {
+      background: $cyan-500;
+      color: $cyan-800;
+    }
+  }
+
+  &--secondary {
+    background-color: $cyan-500;
+    color: $cyan-800;
+
+    &:hover,
+    &.button--active {
+      background: $cyan-400;
+      color: $cyan-800;
+    }
+  }
+
+  &:hover,
+  &--active {
+    transition: $transition-base-enter;
+  }
+
+  &--disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}

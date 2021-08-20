@@ -1,0 +1,127 @@
+.input-group {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+
+  &__label {
+    color: $cyan-600;
+    font-size: $fs-small;
+    font-weight: $font-normal;
+  }
+
+  &__feedback {
+    font-size: $fs-small;
+    color: $cyan-600;
+    display: none;
+  }
+
+  // Inside element
+
+  &__element,
+  &__inside-label {
+    padding: 0.4rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: $radius-xsmall;
+    background-color: $cyan-300;
+    border: $border-base $transparent;
+    transition: $transition-base-leave;
+
+    &--options-group {
+      padding: 0;
+      background-color: $transparent;
+      border-color: $transparent !important;
+    }
+
+    &:focus-within,
+    &:hover {
+      transition: $transition-base-enter;
+      border-color: $cyan-500;
+    }
+  }
+
+  &__pre {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $cyan-400;
+  }
+
+  &__input {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 0.4rem;
+    border: none;
+    outline: none;
+    text-align: right;
+    font-family: $font-family-base;
+    font-weight: $font-bold;
+    font-size: $fs-base;
+    color: $cyan-800;
+    background-color: $transparent;
+
+    &--centered-placeholder {
+      &::placeholder {
+        text-align: center;
+      }
+    }
+  }
+
+  &__options-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -0.2rem;
+
+    .option {
+      width: 33.33%;
+
+      &__content {
+        padding: 0.2rem;
+      }
+    }
+  }
+
+  // States
+
+  &--has-error & {
+    &__feedback {
+      color: $red-500;
+      display: inline;
+    }
+
+    &__element {
+      border-color: $red-500;
+    }
+  }
+
+  &--radio & {
+    &__element {
+      padding: 0.2rem;
+      background-color: $transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    &__input {
+      position: absolute;
+      z-index: -1;
+
+      &:checked + .input-group__inside-label {
+        background-color: $cyan-500;
+        color: $cyan-800;
+      }
+    }
+
+    &__inside-label {
+      width: 100%;
+      background-color: $cyan-800;
+      color: $white;
+      font-weight: $font-bold;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
