@@ -10,7 +10,7 @@
         </div>
         <div class="input-group__element">
           <img src="@/assets/images/icon-dollar.svg" alt="$" class="input-group__pre">
-          <input class="input-group__input" type="number" v-model="invoiceValue">
+          <input class="input-group__input" type="number" v-model="billValue">
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
         </div>
         <div class="input-group__element">
           <img src="@/assets/images/icon-person.svg" alt="Person" class="input-group__pre">
-          <input class="input-group__input" type="number">
+          <input class="input-group__input" type="number" v-model="numberOfPersons">
         </div>
       </div>
     </div>
@@ -53,42 +53,41 @@
 </template>
 
 <script lang="ts">
+// Others
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { namespace, Action } from 'vuex-class'
+
+// Store
+import { TipModule } from '@storeModule/TipModule'
 
 // Components
 const TipOption = () => import('@/components/shared/TipOption.vue')
-
-const TipModule = namespace('TipModule')
 
 @Component({
   components: {
     TipOption
   }
 })
+
 export default class TipForm extends Vue {
-  // Store
-  // @Action('TipModule/updateInvoiceValue') updateInvoiceValue!: (value: number) => void
-
   // Data
-  public invoiceValue = 0
-
-  // Getters
-  @TipModule.Getter
-  public getInvoiceValue!: number
-
-  @TipModule.Action
-  public updateInvoiceValue!: (value: number) => void
+  private billValue: number | null = null
+  private numberOfPersons: number | null = null
 
   // Watch
-  @Watch('invoiceValue')
-  private onInvoiceValeuChanged (value: number): void {
-    // this.updateInvoiceValue(value)
+  @Watch('billValue')
+  private onBillValueChanged (value: number): void {
+    TipModule.updateData({ key: 'bill', value })
   }
 
-  mounted (): void {
-    this.invoiceValue = this.getInvoiceValue
-    this.updateInvoiceValue(100)
+  @Watch('numberOfPersons')
+  private onNumberOfPersonsChanged (value: number): void {
+    TipModule.updateData({ key: 'persons', value })
+  }
+
+  // Mounted
+  private mounted (): void {
+    this.billValue = TipModule.getData('bill') || null
+    this.numberOfPersons = TipModule.getData('persons') || null
   }
 }
 </script>

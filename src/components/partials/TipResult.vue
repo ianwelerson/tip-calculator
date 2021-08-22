@@ -10,7 +10,7 @@
           <div class="result-block__value-side">
             <p class="value">
               <span class="value__currency">$</span>
-              <span class="value__number" id="tipAmount">{{ getInvoiceValue }}</span>
+              <span class="value__number" id="tipAmount">{{ tipAmount }}</span>
             </p>
           </div>
         </div>
@@ -25,14 +25,18 @@
           <div class="result-block__value-side">
             <p class="value">
               <span class="value__currency">$</span>
-              <span class="value__number" id="totalValue">0</span>
+              <span class="value__number" id="totalValue">{{ billTotal }}</span>
             </p>
           </div>
         </div>
       </div>
 
       <div class="result-content__action">
-        <button class="button button--secondary button--disabled" id="resetValues">
+        <button
+          class="button button--secondary"
+          :class="{ 'button--disabled': !allowReset }"
+          @click="resetValues"
+        >
           Reset
         </button>
       </div>
@@ -41,15 +45,31 @@
 </template>
 
 <script lang="ts">
+// Vue
 import { Component, Vue } from 'vue-property-decorator'
-import { namespace } from 'vuex-class'
 
-const TipModule = namespace('TipModule')
+// Store
+import { TipModule } from '@storeModule/TipModule'
 
 @Component
 export default class TipResult extends Vue {
-  @TipModule.Getter
-  public getInvoiceValue!: number
+  // Computed
+  private get tipAmount (): string {
+    return String(TipModule.getTipPerPerson)
+  }
+
+  private get billTotal (): string {
+    return String(TipModule.getBillPerPerson)
+  }
+
+  private get allowReset (): boolean {
+    return TipModule.hasTheMinimumValuesRequirement
+  }
+
+  // Methods
+  private resetValues (): void {
+    TipModule.resetValues()
+  }
 }
 </script>
 

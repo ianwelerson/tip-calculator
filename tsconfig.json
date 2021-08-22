@@ -19,7 +19,11 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@storeModule/*": [
+        "src/store/modules/*"
+      ],
+      
     },
     "lib": [
       "esnext",
