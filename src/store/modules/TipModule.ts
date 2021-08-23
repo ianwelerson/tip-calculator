@@ -1,27 +1,20 @@
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
 import store from '@/store'
+import { TipStore } from '@interface'
+import { TipFieldTypes } from '@type'
 
-interface TipData {
-  bill: number
-  tip: number
-  persons: number
-  [key: string]: number
-}
-
-const defaultStore: TipData = {
+const defaultStore: TipStore = {
   bill: 0,
   tip: 0,
   persons: 0
 }
-
-type KeysAllowed = 'bill' | 'tip' | 'persons'
 
 @Module({ dynamic: true, namespaced: true, name: 'tipModule', store })
 export default class TipState extends VuexModule {
   private data = Object.assign({}, defaultStore)
 
   @Mutation
-  private mutateData ({ key, value }: { key: KeysAllowed, value: number }): void {
+  private mutateData ({ key, value }: { key: TipFieldTypes, value: number }): void {
     this.data[key] = value
   }
 
@@ -32,12 +25,12 @@ export default class TipState extends VuexModule {
 
   /**
    * Update the value for received key
-   * @param  {KeysAllowed} key
+   * @param  {TipFieldTypes} key
    * @param  {number} value
    * @returns void
    */
   @Action
-  public updateData ({ key, value }: { key: KeysAllowed, value: number }): void {
+  public updateData ({ key, value }: { key: TipFieldTypes, value: number }): void {
     this.context.commit('mutateData', { key, value })
   }
 
@@ -51,14 +44,26 @@ export default class TipState extends VuexModule {
   }
 
   /**
+   * Get all calculator data
+   * @returns object
+   */
+  public get getAllData (): TipStore {
+    return this.data
+  }
+
+  /**
    * Get the bill value
-   * @param  {KeysAllowed} key the data that you need
+   * @param  {TipFieldTypes} key the data that you need
    * @returns number
    */
   public get getData () {
-    return (key: KeysAllowed): number => this.data[key] || 0
+    return (key: TipFieldTypes): number => this.data[key] || 0
   }
 
+  /**
+   * Check if the minimum required fields is filled
+   * @returns boolean
+   */
   public get hasTheMinimumValuesRequirement (): boolean {
     return !!(this.data.bill && this.data.persons)
   }

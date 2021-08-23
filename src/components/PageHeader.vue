@@ -13,6 +13,10 @@ export default class PageHeader extends Vue {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.logo {
+  width: auto;
+  height: 3.56rem;
+  object-fit: contain;
+}
 </style>

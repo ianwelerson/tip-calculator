@@ -23,6 +23,12 @@
       "@storeModule/*": [
         "src/store/modules/*"
       ],
+      "@type": [
+        "typescript/types.ts"
+      ],
+      "@interface": [
+        "typescript/interfaces.ts"
+      ],
       
     },
     "lib": [

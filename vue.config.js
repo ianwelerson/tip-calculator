@@ -12,7 +12,9 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@storeModule': path.resolve(__dirname, 'src/store/modules')
+        '@storeModule': path.resolve(__dirname, 'src/store/modules'),
+        '@type': path.resolve(__dirname, 'typescript/types.ts'),
+        '@interface': path.resolve(__dirname, 'typescript/interfaces.ts')
       }
     }
   }

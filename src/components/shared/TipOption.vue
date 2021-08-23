@@ -52,17 +52,34 @@ export default class TipOption extends Vue {
     return this.type === 'button'
   }
 
+  private get storedTipValue (): number {
+    return TipModule.getData('tip')
+  }
+
   // Watch
   @Watch('tipValue')
-  private onTipValueChange (value: number) {
+  private onTipValueChanged (value: number) {
     TipModule.updateData({
       key: 'tip',
       value
     })
   }
 
+  /**
+   * This watches the tip change in vuex and if the value is 0
+   * the component data is set to null
+   */
+  @Watch('storedTipValue')
+  private onStoreTipChanged (value: number) {
+    if (!value) {
+      this.tipValue = null
+    }
+  }
+
   // Methods
-  // If there is some selected tip, unselect
+  /**
+   * Clear tip data
+   */
   private clearPreviusData (): void {
     if (this.isButton) {
       this.clearManualField()

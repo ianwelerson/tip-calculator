@@ -1,7 +1,7 @@
 <template>
   <div class="tip-form">
     <div class="options-block">
-      <div class="input-group" id="billValue">
+      <div class="input-group">
         <div class="input-group__top">
           <label class="input-group__label">
             Bill
@@ -36,7 +36,7 @@
     </div>
 
     <div class="options-block">
-      <div class="input-group" id="numberOfPersons">
+      <div class="input-group">
         <div class="input-group__top">
           <label class="input-group__label">
             Number of People
@@ -59,6 +59,9 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 // Store
 import { TipModule } from '@storeModule/TipModule'
 
+// TS
+import { TipStore } from '@interface'
+
 // Components
 const TipOption = () => import('@/components/shared/TipOption.vue')
 
@@ -67,11 +70,15 @@ const TipOption = () => import('@/components/shared/TipOption.vue')
     TipOption
   }
 })
-
 export default class TipForm extends Vue {
   // Data
   private billValue: number | null = null
   private numberOfPersons: number | null = null
+
+  // Computed
+  private get storeData (): TipStore {
+    return TipModule.getAllData
+  }
 
   // Watch
   @Watch('billValue')
@@ -84,10 +91,21 @@ export default class TipForm extends Vue {
     TipModule.updateData({ key: 'persons', value })
   }
 
+  @Watch('storeData')
+  private onStoreBillValueUpdate (fullStore: TipStore): void {
+    this.billValue = this.getAdjustedValue(fullStore.bill)
+    this.numberOfPersons = this.getAdjustedValue(fullStore.persons)
+  }
+
   // Mounted
   private mounted (): void {
-    this.billValue = TipModule.getData('bill') || null
-    this.numberOfPersons = TipModule.getData('persons') || null
+    this.billValue = this.getAdjustedValue(TipModule.getData('bill'))
+    this.numberOfPersons = this.getAdjustedValue(TipModule.getData('persons'))
+  }
+
+  // Methods
+  private getAdjustedValue (value: number): number | null {
+    return value || null
   }
 }
 </script>
