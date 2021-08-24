@@ -1,53 +1,40 @@
 <template>
   <div class="tip-form">
     <div class="options-block">
-      <div class="input-group">
-        <div class="input-group__top">
-          <label class="input-group__label">
-            Bill
-          </label>
-          <p class="input-group__feedback"></p>
-        </div>
-        <div class="input-group__element">
-          <img src="@/assets/images/icon-dollar.svg" alt="$" class="input-group__pre">
-          <input class="input-group__input" type="number" v-model="billValue">
-        </div>
-      </div>
+      <input-element
+        label="Bill"
+        icon="dollar"
+        v-model.number="billValue"
+        :validation="[
+          {
+            rule: 'min:1',
+            showMessage: true
+          }
+        ]"
+      />
     </div>
 
     <div class="options-block">
-      <div class="input-group">
-        <div class="input-group__top">
-          <label class="input-group__label">
-            Select Tip %
-          </label>
-        </div>
-        <div class="input-group__element input-group__element--options-group">
-          <div class="tip-options">
-            <TipOption value="5" />
-            <TipOption value="10" />
-            <TipOption value="15" />
-            <TipOption value="25" />
-            <TipOption value="50" />
-            <TipOption type="input" />
-          </div>
-        </div>
-      </div>
+      <input-element
+        label="Select Tip $"
+        type="radio-with-manual"
+        :options="[5, 10, 15, 25, 50]"
+        v-model.number="tipPercent"
+      />
     </div>
 
     <div class="options-block">
-      <div class="input-group">
-        <div class="input-group__top">
-          <label class="input-group__label">
-            Number of People
-          </label>
-          <p class="input-group__feedback"></p>
-        </div>
-        <div class="input-group__element">
-          <img src="@/assets/images/icon-person.svg" alt="Person" class="input-group__pre">
-          <input class="input-group__input" type="number" v-model="numberOfPersons">
-        </div>
-      </div>
+      <input-element
+        label="Number of People"
+        icon="person"
+        v-model.number="numberOfPersons"
+        :validation="[
+          {
+            rule: 'min:1',
+            showMessage: true
+          }
+        ]"
+      />
     </div>
   </div>
 </template>
@@ -62,18 +49,12 @@ import { TipModule } from '@storeModule/TipModule'
 // TS
 import { TipStore } from '@interface'
 
-// Components
-const TipOption = () => import('@/components/shared/TipOption.vue')
-
-@Component({
-  components: {
-    TipOption
-  }
-})
+@Component
 export default class TipForm extends Vue {
   // Data
   private billValue: number | null = null
   private numberOfPersons: number | null = null
+  private tipPercent: number | null = null
 
   // Computed
   private get storeData (): TipStore {
@@ -86,6 +67,11 @@ export default class TipForm extends Vue {
     TipModule.updateData({ key: 'bill', value })
   }
 
+  @Watch('tipPercent')
+  private onTipPercentChanged (value: number): void {
+    TipModule.updateData({ key: 'tip', value })
+  }
+
   @Watch('numberOfPersons')
   private onNumberOfPersonsChanged (value: number): void {
     TipModule.updateData({ key: 'persons', value })
@@ -95,6 +81,7 @@ export default class TipForm extends Vue {
   private onStoreBillValueUpdate (fullStore: TipStore): void {
     this.billValue = this.getAdjustedValue(fullStore.bill)
     this.numberOfPersons = this.getAdjustedValue(fullStore.persons)
+    this.tipPercent = this.getAdjustedValue(fullStore.tip)
   }
 
   // Mounted

@@ -35,7 +35,6 @@ export default class App extends Vue {}
 @import '@/assets/scss/reset';
 @import '@/assets/scss/fonts';
 @import '@/assets/scss/buttons';
-@import '@/assets/scss/form';
 
 .tip-calculator {
   height: 100%;

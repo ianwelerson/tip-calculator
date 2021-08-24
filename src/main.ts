@@ -5,6 +5,9 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+// Global Components
+Vue.component('input-element', () => import('@/components/layout/InputComponent.vue'))
+
 new Vue({
   store,
   render: h => h(App)
