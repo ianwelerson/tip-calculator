@@ -28,8 +28,7 @@
       ],
       "@interface": [
         "typescript/interfaces.ts"
-      ],
-      
+      ]
     },
     "lib": [
       "esnext",
@@ -43,7 +42,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "jest.setup.ts"
   ],
   "exclude": [
     "node_modules"

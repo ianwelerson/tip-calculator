@@ -32,9 +32,9 @@ export default class App extends Vue {}
 
 <style lang="scss">
 // Base styles
-@import '@/assets/scss/reset';
-@import '@/assets/scss/fonts';
-@import '@/assets/scss/buttons';
+@import '@/assets/scss/reset.scss';
+@import '@/assets/scss/fonts.scss';
+@import '@/assets/scss/buttons.scss';
 
 .tip-calculator {
   height: 100%;

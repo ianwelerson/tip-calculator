@@ -97,4 +97,4 @@ export default class TipState extends VuexModule {
   }
 }
 
-export const TipModule = getModule(TipState)
+export const TipModule = getModule(TipState, store)

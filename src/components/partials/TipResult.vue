@@ -8,9 +8,9 @@
             <span class="title-group__unit">/ person</span>
           </div>
           <div class="result-block__value-side">
-            <p class="value">
+            <p data-testid="tip-per-person" class="value">
               <span class="value__currency">$</span>
-              <span class="value__number" id="tipAmount">{{ tipAmount }}</span>
+              <span class="value__number">{{ tipAmount }}</span>
             </p>
           </div>
         </div>
@@ -23,9 +23,11 @@
             </p>
           </div>
           <div class="result-block__value-side">
-            <p class="value">
+            <p data-testid="total-per-person" class="value">
               <span class="value__currency">$</span>
-              <span class="value__number" id="totalValue">{{ billTotal }}</span>
+              <span class="value__number">
+                {{ billTotal }}
+              </span>
             </p>
           </div>
         </div>
@@ -35,7 +37,9 @@
         <button
           class="button button--secondary"
           :class="{ 'button--disabled': !allowReset }"
+          :disabled="!allowReset"
           @click="resetValues"
+          data-testid="reset-action"
         >
           Reset
         </button>
