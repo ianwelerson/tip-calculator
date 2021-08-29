@@ -1,8 +1,12 @@
 <template>
   <div class="tip-form">
-    <div class="options-block">
+    <div
+      class="options-block"
+      data-testid="options-block"
+    >
       <input-element
         label="Bill"
+        key="bill"
         icon="dollar"
         v-model.number="billValue"
         :validation="[
@@ -14,18 +18,26 @@
       />
     </div>
 
-    <div class="options-block">
+    <div
+      class="options-block"
+      data-testid="options-block"
+    >
       <input-element
         label="Select Tip $"
+        key="tip"
         type="radio-with-manual"
         :options="[5, 10, 15, 25, 50]"
         v-model.number="tipPercent"
       />
     </div>
 
-    <div class="options-block">
+    <div
+      class="options-block"
+      data-testid="options-block"
+    >
       <input-element
-        label="Number of People"
+        label="Number of persons"
+        key="person"
         icon="person"
         v-model.number="numberOfPersons"
         :validation="[
@@ -34,6 +46,7 @@
             showMessage: true
           }
         ]"
+        data-testid="number-people-input"
       />
     </div>
   </div>

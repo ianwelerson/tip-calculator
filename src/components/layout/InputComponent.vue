@@ -5,6 +5,7 @@
       'input-group--has-error': hasError,
       'input-group--radio-with-manual': isRadioWithOptions
     }"
+    data-testid="input-group"
   >
     <!-- Title -->
     <div class="input-group__top">
@@ -41,6 +42,7 @@
             v-bind="$attrs"
             v-on="inputListeners"
             @change="clearNonInteractedField('radio')"
+            data-testid="radio-input"
           >
           <span class="input-group__inside-label">
             {{ option }}%
@@ -58,6 +60,7 @@
             v-bind="$attrs"
             v-on="inputListeners"
             @input="clearNonInteractedField('input')"
+            data-testid="manual-radio-input"
           >
         </div>
       </div>
@@ -79,6 +82,7 @@
         type="number"
         v-bind="$attrs"
         v-on="inputListeners"
+        data-testid="normal-input"
       >
     </div>
   </div>

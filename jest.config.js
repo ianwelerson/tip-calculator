@@ -7,5 +7,8 @@ module.exports = {
     '^@storeModule/(.*)$': '<rootDir>/src/store/modules/$1',
     '^@type': '<rootDir>typescript/types.ts',
     '^@interface': '<rootDir>typescript/interfaces.ts'
+  },
+  transform: {
+    '.*\\.(vue)$': 'vue-jest'
   }
 }
