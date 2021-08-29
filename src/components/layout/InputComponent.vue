@@ -12,12 +12,14 @@
       <label
         v-if="label"
         class="input-group__label"
+        data-testid="input-label"
       >
         {{ label }}
       </label>
       <p
         v-if="!!feedback"
         class="input-group__feedback"
+        data-testid="input-feedback"
       >
         {{ feedback }}
       </p>
@@ -75,6 +77,7 @@
         :src="fieldIcon"
         :alt="label"
         class="input-group__pre"
+        data-testid="normal-input-icon"
       >
       <input
         ref="input-element"
@@ -98,6 +101,7 @@ import { ValidationMixin } from '@/mixins/ValidationMixin'
 // Interface & Types
 import { VueConstructor } from 'vue/types/vue'
 import { ValidationReturn, ValidationRule } from '@interface'
+import { AvailableIcon } from '@type'
 
 @Component({
   inheritAttrs: false
@@ -108,7 +112,7 @@ export default class InputComponent extends mixins(ValidationMixin) {
   // Basic
   @Prop({ type: Number, default: null }) readonly value!: number | null
   @Prop({ type: String, default: null }) readonly label!: string | null
-  @Prop({ type: String, default: null }) readonly icon!: string | null
+  @Prop({ type: String, default: null }) readonly icon!: AvailableIcon | null
   @Prop({ type: String, default: 'input', validator: (value) => ['input', 'radio-with-manual'].includes(value) }) readonly type!: string
   @Prop({ type: Array, default: null }) readonly options!: number[] | null
 

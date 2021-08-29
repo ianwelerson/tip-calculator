@@ -5,10 +5,13 @@ import Component from 'vue-class-component'
 // Interface
 import { ValidationReturn } from '@interface'
 
+// Type
+import { ValidationKey } from '@type'
+
 // You can declare mixins as the same style as components.
 @Component
 export class ValidationMixin extends Vue {
-  public validateRule ({ rule, value }: { rule: string, value: number }): ValidationReturn {
+  public validateRule ({ rule, value }: { rule: ValidationKey, value: number }): ValidationReturn {
     const validation: ValidationReturn = {
       hasError: false,
       message: null

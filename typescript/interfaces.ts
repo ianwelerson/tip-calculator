@@ -1,3 +1,5 @@
+import { ValidationKey } from '@type'
+
 export interface TipStore {
   bill: number
   tip: number
@@ -11,6 +13,6 @@ export interface ValidationReturn {
 }
 
 export interface ValidationRule {
-  rule: string
+  rule: ValidationKey
   showMessage: boolean
 }
