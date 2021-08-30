@@ -16,6 +16,7 @@ import { ValidationRule } from '@interface'
 import { AvailableIcon } from '@type'
 
 interface GeneratorInterface {
+  name: string
   value: number | null
   label: string | null
   icon: AvailableIcon | null
@@ -33,6 +34,7 @@ function mountGenerator (propsData: GeneratorInterface) {
 
 // Prop
 const defaultProps: GeneratorInterface = {
+  name: 'my-input',
   value: null,
   label: null,
   icon: null,
@@ -46,7 +48,7 @@ describe('InputComponent - vue/test-utils', () => {
     it('should render normal input', () => {
       const wrapper = mountGenerator(defaultProps)
 
-      const input = wrapper.find('[data-testid="normal-input"]')
+      const input = wrapper.find('[data-testid=normal-input]')
 
       expect(input.exists()).toBeTruthy()
     })
@@ -58,8 +60,8 @@ describe('InputComponent - vue/test-utils', () => {
         options: [1, 2]
       })
 
-      const radio = wrapper.findAll('[data-testid="radio-input"]')
-      const manual = wrapper.find('[data-testid="manual-radio-input"')
+      const radio = wrapper.findAll('[data-testid=radio-input]')
+      const manual = wrapper.find('[data-testid=manual-radio-input')
 
       expect(radio).toHaveLength(2)
       expect(manual.exists()).toBeTruthy()
@@ -70,7 +72,7 @@ describe('InputComponent - vue/test-utils', () => {
     it('should not render label element', () => {
       const wrapper = mountGenerator(defaultProps)
 
-      const labelElement = wrapper.find('[data-testid="input-label"]')
+      const labelElement = wrapper.find('[data-testid=input-label]')
 
       expect(labelElement.exists()).toBeFalsy()
     })
@@ -83,7 +85,7 @@ describe('InputComponent - vue/test-utils', () => {
         label
       })
 
-      const labelElement = wrapper.find('[data-testid="input-label"]')
+      const labelElement = wrapper.find('[data-testid=input-label]')
 
       expect(labelElement.exists()).toBeTruthy()
       expect(labelElement.text()).toBe(label)
@@ -94,7 +96,7 @@ describe('InputComponent - vue/test-utils', () => {
     it('should not render icon element', () => {
       const wrapper = mountGenerator(defaultProps)
 
-      const iconElement = wrapper.find('[data-testid="normal-input-icon"]')
+      const iconElement = wrapper.find('[data-testid=normal-input-icon]')
 
       expect(iconElement.exists()).toBeFalsy()
     })
@@ -110,7 +112,7 @@ describe('InputComponent - vue/test-utils', () => {
       // Icon render
       await wrapper.vm.$nextTick()
 
-      const iconElement = wrapper.find('[data-testid="normal-input-icon"]')
+      const iconElement = wrapper.find('[data-testid=normal-input-icon]')
       expect(iconElement.exists()).toBeTruthy()
     })
   })
@@ -121,7 +123,7 @@ describe('InputComponent - vue/test-utils', () => {
 
       const wrapper = mountGenerator(defaultProps)
 
-      const input = wrapper.find('[data-testid="normal-input"]')
+      const input = wrapper.find('[data-testid=normal-input]')
       await input.setValue(value)
       const inputEmitted = wrapper.emitted().input
 
@@ -136,7 +138,7 @@ describe('InputComponent - vue/test-utils', () => {
 
       const wrapper = mountGenerator(defaultProps)
 
-      const input = wrapper.find('[data-testid="normal-input"]')
+      const input = wrapper.find('[data-testid=normal-input]')
 
       await input.setValue(value)
       expect((input.element as HTMLInputElement).value).toBe(value)
@@ -165,7 +167,7 @@ describe('InputComponent - vue/test-utils', () => {
       // Check if is checked
       expect(radioValueOneElement.checked).toBeTruthy()
 
-      const input = wrapper.find('[data-testid="manual-radio-input"]')
+      const input = wrapper.find('[data-testid=manual-radio-input]')
 
       // Check if the input is empty
       expect((input.element as HTMLInputElement).value).toBe('')
@@ -187,13 +189,13 @@ describe('InputComponent - vue/test-utils', () => {
         }]
       })
 
-      const inputGroup = wrapper.find('[data-testid="input-group"]')
+      const inputGroup = wrapper.find(`[data-testid=${defaultProps.name}-input-group]`)
 
       await wrapper.setProps({
         value: 0
       })
 
-      const feedbackElement = wrapper.find('[data-testid="input-feedback"')
+      const feedbackElement = wrapper.find('[data-testid=input-feedback')
 
       expect(inputGroup.classes()).toContain('input-group--has-error')
       expect(feedbackElement.exists()).toBeTruthy()
@@ -208,13 +210,13 @@ describe('InputComponent - vue/test-utils', () => {
         }]
       })
 
-      const inputGroup = wrapper.find('[data-testid="input-group"]')
+      const inputGroup = wrapper.find(`[data-testid=${defaultProps.name}-input-group]`)
 
       await wrapper.setProps({
         value: 0
       })
 
-      const feedbackElement = wrapper.find('[data-testid="input-feedback"')
+      const feedbackElement = wrapper.find('[data-testid=input-feedback')
 
       expect(inputGroup.classes()).toContain('input-group--has-error')
       expect(feedbackElement.exists()).toBeFalsy()

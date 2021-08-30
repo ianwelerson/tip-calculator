@@ -15,6 +15,7 @@ import InputElement from '@/components/layout/InputComponent.vue'
 import { ValidationRule } from '@interface'
 import { AvailableIcon } from '@type'
 interface GeneratorInterface {
+  name: string
   value: number | null
   label: string | null
   icon: AvailableIcon | null
@@ -34,6 +35,7 @@ function renderGenerator (props: GeneratorInterface): RenderResult {
 
 // Default prop
 const defaultProps: GeneratorInterface = {
+  name: 'my-input',
   value: null,
   label: null,
   icon: null,
@@ -47,7 +49,7 @@ describe('InputComponent - @testing-library/vue', () => {
     it('should render normal input when type is \'input\'', async () => {
       const { findByTestId } = renderGenerator(defaultProps)
 
-      const inputGroup = await findByTestId('input-group')
+      const inputGroup = await findByTestId(`${defaultProps.name}-input-group`)
       const inputELement = await within(inputGroup).findByTestId('normal-input')
 
       expect(inputELement).not.toBeNull()
@@ -60,7 +62,7 @@ describe('InputComponent - @testing-library/vue', () => {
         options: [1, 2]
       })
 
-      const inputGroup = await findByTestId('input-group')
+      const inputGroup = await findByTestId(`${defaultProps.name}-input-group`)
       const radioElement = await within(inputGroup).getAllByTestId('radio-input')
       const inputManual = await within(inputGroup).getAllByTestId('manual-radio-input')
 
@@ -116,7 +118,7 @@ describe('InputComponent - @testing-library/vue', () => {
         }]
       })
 
-      const inputGroup = await findByTestId('input-group')
+      const inputGroup = await findByTestId(`${defaultProps.name}-input-group`)
 
       // Simulating the value props update after field type
       await updateProps({
@@ -137,7 +139,7 @@ describe('InputComponent - @testing-library/vue', () => {
         }]
       })
 
-      const inputGroup = await findByTestId('input-group')
+      const inputGroup = await findByTestId(`${defaultProps.name}-input-group`)
 
       // Simulating the value props update after field type
       await updateProps({
@@ -158,7 +160,7 @@ describe('InputComponent - @testing-library/vue', () => {
         }]
       })
 
-      const inputGroup = await findByTestId('input-group')
+      const inputGroup = await findByTestId(`${defaultProps.name}-input-group`)
 
       // Simulating the value props update after field type
       await updateProps({

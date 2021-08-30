@@ -25,9 +25,7 @@
           <div class="result-block__value-side">
             <p data-testid="total-per-person" class="value">
               <span class="value__currency">$</span>
-              <span class="value__number">
-                {{ billTotal }}
-              </span>
+              <span class="value__number">{{ billTotal }}</span>
             </p>
           </div>
         </div>

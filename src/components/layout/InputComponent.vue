@@ -5,7 +5,7 @@
       'input-group--has-error': hasError,
       'input-group--radio-with-manual': isRadioWithOptions
     }"
-    data-testid="input-group"
+    :data-testid="`${name}-input-group`"
   >
     <!-- Title -->
     <div class="input-group__top">
@@ -39,7 +39,7 @@
             ref="radio-element"
             class="input-group__input"
             type="radio"
-            name="tipPercent"
+            :name="`${name}-radio`"
             :value="option"
             v-bind="$attrs"
             v-on="inputListeners"
@@ -58,6 +58,7 @@
             ref="input-element"
             class="input-group__input input-group__input--centered-placeholder"
             type="number"
+            :name="`${name}-manual`"
             placeholder="Custom"
             v-bind="$attrs"
             v-on="inputListeners"
@@ -83,6 +84,7 @@
         ref="input-element"
         class="input-group__input"
         type="number"
+        :name="name"
         v-bind="$attrs"
         v-on="inputListeners"
         data-testid="normal-input"
@@ -110,6 +112,7 @@ export default class InputComponent extends mixins(ValidationMixin) {
   // Props
 
   // Basic
+  @Prop({ type: String, required: true }) readonly name!: string
   @Prop({ type: [Number, String], default: null }) readonly value!: number | null | ''
   @Prop({ type: String, default: null }) readonly label!: string | null
   @Prop({ type: String, default: null }) readonly icon!: AvailableIcon | null

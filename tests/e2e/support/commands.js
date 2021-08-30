@@ -23,3 +23,15 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// Type a calculation
+Cypress.Commands.add('calcABill', ({ bill, tip, person, manualTip }) => {
+  cy.get('[data-testid=bill-input-group] [name=bill]').type(bill)
+  cy.get('[data-testid=person-input-group] [name=person]').type(person)
+
+  if (manualTip) {
+    cy.get('[data-testid=tip-input-group] [name=tip-manual]').type(tip)
+  } else {
+    cy.get(`[data-testid=tip-input-group] [value=${tip}]`).check({ force: true })
+  }
+})

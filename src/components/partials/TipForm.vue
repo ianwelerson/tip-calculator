@@ -6,7 +6,7 @@
     >
       <input-element
         label="Bill"
-        key="bill"
+        name="bill"
         icon="dollar"
         v-model.number="billValue"
         :validation="[
@@ -24,7 +24,7 @@
     >
       <input-element
         label="Select Tip $"
-        key="tip"
+        name="tip"
         type="radio-with-manual"
         :options="[5, 10, 15, 25, 50]"
         v-model.number="tipPercent"
@@ -37,7 +37,7 @@
     >
       <input-element
         label="Number of persons"
-        key="person"
+        name="person"
         icon="person"
         v-model.number="numberOfPersons"
         :validation="[
