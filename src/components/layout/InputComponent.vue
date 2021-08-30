@@ -110,7 +110,7 @@ export default class InputComponent extends mixins(ValidationMixin) {
   // Props
 
   // Basic
-  @Prop({ type: Number, default: null }) readonly value!: number | null
+  @Prop({ type: [Number, String], default: null }) readonly value!: number | null | ''
   @Prop({ type: String, default: null }) readonly label!: string | null
   @Prop({ type: String, default: null }) readonly icon!: AvailableIcon | null
   @Prop({ type: String, default: 'input', validator: (value) => ['input', 'radio-with-manual'].includes(value) }) readonly type!: string
@@ -143,11 +143,11 @@ export default class InputComponent extends mixins(ValidationMixin) {
 
   // Watch
   @Watch('value')
-  private onValueChange (newValue: number): void {
+  private onValueChange (newValue: number | ''): void {
     /**
      * If received value is NULL the clear methods are called
      */
-    if (newValue === null) {
+    if (newValue === null || newValue === '') {
       // Clear input
       this.clearInput()
 

@@ -4,6 +4,7 @@
  * There are a .test and .spec files, this files tests the same component,
  * but one using @testing-library/vue and another using the default @vue/test-utils
  */
+
 // Lib
 import { render, within, waitFor, RenderResult } from '@testing-library/vue'
 
