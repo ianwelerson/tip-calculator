@@ -1,7 +1,7 @@
 
 # Tip calculator - Vanilla JavaScript
 
-This project was a study about different ways to create the same project. This was made using **Pura JavaScript**, but you can switch between branches and view the **Vue.js 2** and **TypeScrip** version. All versions was made using **Jest** and **Cypress**.
+This project was a study about different ways to create the same project. This was made using **pure JavaScript**, but you can switch between branches and view the **Vue.js 2** and **TypeScrip** version. All versions was made using **Jest** and **Cypress**.
 
 The idea behind this version is to use **pure JavaScript**, with **Cypress** and **Jest**.
 
