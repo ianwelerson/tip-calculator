@@ -3,21 +3,7 @@
 
 This project was a study about different ways to create the same project. This was made using **Vue.js 2 with TypeScript**, but you can switch between branches and view the **VanillaJS** and **TypeScrip** version. All versions was made using **Jest** and **Cypress**.
 
-### About
-
- ![Project Preview](./design/readme-preview.png)
-
-The ideia behind this version is to create a version of a **Tip Calculator** using **Vue.js 2**, **TypeScript**, **Cypress** and **Jest**.
-
-### The challenge
-
-Users should be able to:
-
-- View the optimal layout for the app depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Calculate the correct tip and total cost of the bill per person
-
-**The project ideia is from [Frontend Mentor challenges](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX).**
+The ideia behind this version is to use **Vue.js 2** with **TypeScript**, **Cypress** and **Jest**.
 
 ### Built with
 
@@ -43,6 +29,19 @@ In all `.spec` files I used the `vue-test-utils` library or just jest default.
 In all `.test` files you can find the **Testing Library** strategy.
 
 **This was intentional and my goal was to see the difference between this two libraries in test creation.**
+
+### The challenge
+
+Users should be able to:
+
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Calculate the correct tip and total cost of the bill per person
+
+**The project ideia is from [Frontend Mentor challenges](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX).**
+
+### Screen
+![Project Preview](./design/readme-preview.png)
 
 ## Author
 
