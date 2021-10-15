@@ -5,6 +5,10 @@ This project was a study about different ways to create the same project. This w
 
 The ideia behind this version is to use **Vue.js 2** with **TypeScript**, **Cypress** and **Jest**.
 
+### Test Environment
+
+https://tip-calculator-vue2.netlify.app
+
 ### Built with
 
 - [Vue.js 2](https://vuejs.org/)
