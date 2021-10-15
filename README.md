@@ -7,6 +7,11 @@ The idea behind this version is to use **pure JavaScript**, with **Cypress** and
 
 Beside that, in this version **all dependencies configurations was made by me**, including **Webpack**, **Babel**, **SASS** and more.
 
+
+# Test Environment
+
+https://tip-calculator-vanillajs.netlify.app/
+
 ### Built with
 
 - Pure JavaScript
