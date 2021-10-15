@@ -7,6 +7,11 @@ The idea behind this version is to use **TypeScript**, with **Cypress** and **Je
 
 This is the **VanillaJS** version with **TypeScript** so all configurations was made by me, including the **Webpack** and **Babel** to work with TypeScrip.
 
+### Test Environment
+
+https://tip-calculator-ts.netlify.app/
+
+
 ### Built with
 
 - [TypeScript](https://www.typescriptlang.org/)
